@@ -45,20 +45,11 @@ imageScalarsPWF = GetOpacityTransferFunction('ImageScalars')
 # reset view to fit data
 renderView1.ResetCamera()
 
-# reset view to fit data
-renderView1.ResetCamera()
-
 # create a new 'Clip'
 clip1 = Clip(Input=test1p0vti)
 clip1.ClipType = 'Plane'
 clip1.Scalars = ['POINTS', 'ImageScalars']
 clip1.Value = 0.12182831950485706
-
-# init the 'Plane' selected for 'ClipType'
-clip1.ClipType.Origin = [240.284, 240.284, 904.0]
-
-# Properties modified on clip1.ClipType
-clip1.ClipType.Origin = [200.0, 200.0, 800.0]
 
 # show data in view
 clip1Display = Show(clip1, renderView1)
@@ -88,53 +79,6 @@ clip2.ClipType = 'Plane'
 clip2.Scalars = ['POINTS', 'ImageScalars']
 clip2.Value = 0.12182831950485706
 
-# init the 'Plane' selected for 'ClipType'
-clip2.ClipType.Origin = [290.28399658203125, 240.28399658203125, 904.0]
-
-# Properties modified on clip2.ClipType
-clip2.ClipType.Origin = [400.0, 400.0, 800.0]
-
-# show data in view
-clip2Display = Show(clip2, renderView1)
-# trace defaults for the display properties.
-clip2Display.Representation = 'Outline'
-clip2Display.ColorArrayName = ['POINTS', 'ImageScalars']
-clip2Display.LookupTable = imageScalarsLUT
-clip2Display.GlyphType = 'Arrow'
-clip2Display.ScalarOpacityUnitDistance = 7.267662165061412
-clip2Display.SetScaleArray = ['POINTS', 'ImageScalars']
-clip2Display.ScaleTransferFunction = 'PiecewiseFunction'
-clip2Display.OpacityArray = ['POINTS', 'ImageScalars']
-clip2Display.OpacityTransferFunction = 'PiecewiseFunction'
-
-# show color bar/color legend
-clip2Display.SetScalarBarVisibility(renderView1, True)
-
-# set active source
-SetActiveSource(clip1)
-
-# hide data in view
-Hide(clip2, renderView1)
-
-# show data in view
-clip1Display = Show(clip1, renderView1)
-
-# show color bar/color legend
-clip1Display.SetScalarBarVisibility(renderView1, True)
-
-# destroy clip2
-Delete(clip2)
-del clip2
-
-# create a new 'Clip'
-clip2 = Clip(Input=clip1)
-clip2.ClipType = 'Plane'
-clip2.Scalars = ['POINTS', 'ImageScalars']
-clip2.Value = 0.12182831950485706
-
-# init the 'Plane' selected for 'ClipType'
-clip2.ClipType.Origin = [290.28399658203125, 240.28399658203125, 904.0]
-
 # Properties modified on clip2.ClipType
 clip2.ClipType.Origin = [200.0, 200.0, 800.0]
 clip2.ClipType.Normal = [0.0, 1.0, 0.0]
@@ -163,9 +107,6 @@ clip3 = Clip(Input=clip2)
 clip3.ClipType = 'Plane'
 clip3.Scalars = ['POINTS', 'ImageScalars']
 clip3.Value = 0.12182831950485706
-
-# init the 'Plane' selected for 'ClipType'
-clip3.ClipType.Origin = [290.28399658203125, 340.28399658203125, 904.0]
 
 # Properties modified on clip3.ClipType
 clip3.ClipType.Origin = [200.0, 200.0, 1200.0]
@@ -205,12 +146,6 @@ imageScalarsPWF.RescaleTransferFunction(0.0, 0.02)
 # toggle 3D widget visibility (only when running from the GUI)
 Hide3DWidgets(proxy=clip3)
 
-# toggle 3D widget visibility (only when running from the GUI)
-Show3DWidgets(proxy=clip3)
-
-# toggle 3D widget visibility (only when running from the GUI)
-Hide3DWidgets(proxy=clip3)
-
 # current camera placement for renderView1
 renderView1.CameraPosition = [-1096.7562310624733, -2714.9402636198975, 2748.5435611069024]
 renderView1.CameraFocalPoint = [240.28399999999942, 240.28400000000056, 903.9999999999997]
@@ -219,15 +154,3 @@ renderView1.CameraParallelScale = 965.7581484574697
 
 # save screenshot
 SaveScreenshot('/Users/svh/Documents/ClippingFilter.png', magnification=1, quality=100, view=renderView1)
-
-#### saving camera placements for all active views
-
-# current camera placement for renderView1
-renderView1.CameraPosition = [-1096.7562310624733, -2714.9402636198975, 2748.5435611069024]
-renderView1.CameraFocalPoint = [240.28399999999942, 240.28400000000056, 903.9999999999997]
-renderView1.CameraViewUp = [0.1550929002703219, 0.4716347348456258, 0.8680477343860972]
-renderView1.CameraParallelScale = 965.7581484574697
-
-#### uncomment the following to render all views
-# RenderAllViews()
-# alternatively, if you want to write images, you can use SaveScreenshot(...).
